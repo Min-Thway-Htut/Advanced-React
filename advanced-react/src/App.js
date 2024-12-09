@@ -1,20 +1,29 @@
 import React, {createContext, useState} from 'react';
-import ComponentOne from './ComponentOne';
-import ComponentTwo from './ComponentTwo';
+import Header from './Header';
+import ThemeToggle from './ThemeToggle';
 
-export const MyContext = createContext();
+export const ThemeContext = createContext();
 
-function App () {
-  const [data, setData] = useState('Hello from ComponentOne!');
+function App(){
+  const [theme, setTheme] = useState('light');
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
 
   return (
-    <MyContext.Provider value={{data, setData}}>
-      <div>
-        <h1>This is the App Component</h1>
-        <ComponentOne />
-        <ComponentTwo />
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div style={{
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+        color: theme === 'light' ? '#000' : '#ffff',
+        height: '100vh',
+        textAlign: 'center'
+      }}>
+        <h1>Welcome to Theme Switcher</h1>
+        <Header />
+        <ThemeToggle />
       </div>
-    </MyContext.Provider>
+    </ThemeContext.Provider>
   )
 }
 
