@@ -1,24 +1,34 @@
 import { useState } from "react";
 
-export default function App() {
-  const [greeting, setGreeting] = useState(
-    {
-      greet: "Hello",
-      place: "World",
-    }
-  );
-  console.log(greeting, setGreeting);
+function Car(){
+  const [ car, setCar ] = useState({
+    brand: "Ford",
+    model: "Mustang",
+    year: "1964",
+    color: "red"
+  });
 
-  function updateGreeing() {
-    setGreeting(prevState => {
-      return {...prevState, place: "World-Wide Web"}
-    })
-  }
+  const updateColor = () => {
+    setCar(previousState => {
+      return {...previousState, color: "blue"}
+    });
+  };
 
   return (
-    <div>
-      <h1>{greeting.greet}, {greeting.place}</h1>
-      <button onClick={updateGreeing}>Update greeting</button>
-    </div>
+    <>
+    <h1>My {car.brand}</h1>
+    
+    <p>
+      It is a {car.color} {car.model} from {car.year}.
+    </p>
+
+    <button
+    type="button"
+    onClick={updateColor}>
+      Blue
+    </button>
+    </>
   )
 }
+
+export default Car;
