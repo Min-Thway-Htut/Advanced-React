@@ -1,34 +1,15 @@
-import { useState } from "react";
+import {useState, useEffect} from "react";
 
-function Car(){
-  const [ car, setCar ] = useState({
-    brand: "Ford",
-    model: "Mustang",
-    year: "1964",
-    color: "red"
-  });
+function Timer(){
+  const [count, setCount] = useState(0);
 
-  const updateColor = () => {
-    setCar(previousState => {
-      return {...previousState, color: "blue"}
-    });
-  };
+  useEffect(() => {
+    setTimeout(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+  }, []);
 
-  return (
-    <>
-    <h1>My {car.brand}</h1>
-    
-    <p>
-      It is a {car.color} {car.model} from {car.year}.
-    </p>
-
-    <button
-    type="button"
-    onClick={updateColor}>
-      Blue
-    </button>
-    </>
-  )
+  return <h1>I have rendered {count} times!</h1>
 }
 
-export default Car;
+export default Timer;
