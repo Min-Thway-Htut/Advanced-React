@@ -1,3 +1,3 @@
 # Advanced React
 
-This repository is for learning advanced REACT.JS.
+This repository is for learning advanced React.js.
